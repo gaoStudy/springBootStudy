@@ -31,6 +31,7 @@
     <!--引入相关依赖-->
     <dependencies>
 
+        <!--工具包 包括 热部署-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -224,9 +225,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
 
-                <!--不知是否有用-->
+                <!--不知是否有用 如 热部署功能-->
                 <!--<configuration>-->
-                <!--&lt;!&ndash;fork:如果没有该项配置,整个devtools不会起作用&ndash;&gt;-->
+                <!--fork 如果没有该项配置 整个devtools不会起作用 -->
                 <!--<fork>true</fork>-->
                 <!--</configuration>-->
 
