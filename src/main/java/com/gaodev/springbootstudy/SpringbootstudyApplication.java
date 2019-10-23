@@ -6,6 +6,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
+//@SpringBootApplication = (默认属性)@Configuration + @EnableAutoConfiguration + @ComponentScan()
 @MapperScan(basePackages = "com.gaodev.springbootstudy.mapper")
 @EnableCaching
 public class SpringbootstudyApplication {

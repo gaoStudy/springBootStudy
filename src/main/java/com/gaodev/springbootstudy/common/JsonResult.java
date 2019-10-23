@@ -8,48 +8,46 @@ import java.io.Serializable;
 
 /**
  * 统一返回结果
- * <p>
- * @Author LeifChen
- * @Date 2019-02-26
+ 当前实体类在返回前端的时候忽略字段属性为null的字段，使其为null字段不显示
  */
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class JsonResult<T> implements Serializable {
 
-    private int status;
-    private String msg;
+    private int code;
+    private String message;
     private T data;
 
-    private JsonResult(int status) {
-        this.status = status;
+    private JsonResult(int code) {
+        this.code = code;
     }
 
-    private JsonResult(int status, T data) {
-        this.status = status;
+    private JsonResult(int code, T data) {
+        this.code = code;
         this.data = data;
     }
 
-    private JsonResult(int status, String msg, T data) {
-        this.status = status;
-        this.msg = msg;
+    private JsonResult(int code, String message, T data) {
+        this.code = code;
+        this.message = message;
         this.data = data;
     }
 
-    private JsonResult(int status, String msg) {
-        this.status = status;
-        this.msg = msg;
+    private JsonResult(int code, String message) {
+        this.code = code;
+        this.message = message;
     }
 
     @JsonIgnore
     public boolean isSuccess() {
-        return this.status == ResponseCodeEnum.SUCCESS.getCode();
+        return this.code == ResponseStatusCode.SUCCESS.getCode();
     }
 
-    public int getStatus() {
-        return status;
+    public int getCode() {
+        return code;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
     public T getData() {
@@ -57,27 +55,27 @@ public class JsonResult<T> implements Serializable {
     }
 
     public static <T> JsonResult<T> success() {
-        return new JsonResult<>(ResponseCodeEnum.SUCCESS.getCode());
+        return new JsonResult<>(ResponseStatusCode.SUCCESS.getCode());
     }
 
     public static <T> JsonResult<T> success(String msg) {
-        return new JsonResult<>(ResponseCodeEnum.SUCCESS.getCode(), msg);
+        return new JsonResult<>(ResponseStatusCode.SUCCESS.getCode(), msg);
     }
 
     public static <T> JsonResult<T> success(T data) {
-        return new JsonResult<>(ResponseCodeEnum.SUCCESS.getCode(), data);
+        return new JsonResult<>(ResponseStatusCode.SUCCESS.getCode(), data);
     }
 
     public static <T> JsonResult<T> success(String msg, T data) {
-        return new JsonResult<>(ResponseCodeEnum.SUCCESS.getCode(), msg, data);
+        return new JsonResult<>(ResponseStatusCode.SUCCESS.getCode(), msg, data);
     }
 
     public static <T> JsonResult<T> error() {
-        return new JsonResult<>(ResponseCodeEnum.ERROR.getCode(), ResponseCodeEnum.ERROR.getDesc());
+        return new JsonResult<>(ResponseStatusCode.ERROR.getCode(), ResponseStatusCode.ERROR.getMessage());
     }
 
     public static <T> JsonResult<T> error(String errorMessage) {
-        return new JsonResult<>(ResponseCodeEnum.ERROR.getCode(), errorMessage);
+        return new JsonResult<>(ResponseStatusCode.ERROR.getCode(), errorMessage);
     }
 
     public static <T> JsonResult<T> error(int errorCode, String errorMessage) {

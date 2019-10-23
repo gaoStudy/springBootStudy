@@ -48,10 +48,25 @@
             <!--<scope>true</scope>-->
         </dependency>
 
+        <!--https://www.joda.org/joda-time/index.html
+
+        -->
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>2.9.1</version>
+        </dependency>
+
+        <!--货币金额-->
+        <dependency>
+            <groupId>org.joda</groupId>
+            <artifactId>joda-money</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jadira.usertype</groupId>
+            <artifactId>usertype.core</artifactId>
+            <version>6.0.1.GA</version>
         </dependency>
 
         <!-- Spring Boot -->
@@ -82,19 +97,50 @@
             <version>1.9.22</version>
         </dependency>
 
-        <!--  redis  -->
-        <!--org.springframework.boot:spring-boot-starter-data-redis，
-        org.apache.commons:commons-pool2 两个依赖-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.commons</groupId>-->
-            <!--<artifactId>commons-pool2</artifactId>-->
-        <!--</dependency>-->
+        <!--jdbc-->
         <!--<dependency>-->
             <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-data-redis</artifactId>-->
+            <!--<artifactId>spring-boot-starter-jdbc</artifactId>-->
         <!--</dependency>-->
 
-        <!-- 添加redis
+        <!--jpa-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!--会话存于redis
+        spring-session + redis解决session共享问题
+        -->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+            <!--<version>2.0.5.RELEASE</version>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>2.0.9.RELEASE</version>
+        </dependency>
+
+        <!--  redis  -->
+        <!--经认证，在spring boot的版本号为1.5.0的时候 添加spring-boot-starter-reids就找不到jar包了,
+也就是这个jar包直接被废弃了。所以千万要注意的是：如果你的spring boot的版本号在1.5.0以后的，
+添加redis的jar包就必须是spring-boot-starter-data-redis-->
+
+        <!--org.springframework.boot:spring-boot-starter-data-redis，
+        org.apache.commons:commons-pool2 两个依赖-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- 添加redis 废弃
           http://www.redis.net.cn/order/-->
         <!--<dependency>-->
             <!--<groupId>org.springframework.boot</groupId>-->
@@ -165,7 +211,7 @@
             <version>${druid-version}</version>
         </dependency>
 
-        <!--???-->
+        <!--druid -->
         <!--<dependency>-->
             <!--<groupId>com.alibaba</groupId>-->
             <!--<artifactId>druid-spring-boot-starter</artifactId>-->
@@ -173,13 +219,14 @@
         <!--</dependency>-->
 
 
-        <!-- HikariCP 数据库连接池 -->
-        <!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
-        <!--<dependency>-->
-            <!--<groupId>com.zaxxer</groupId>-->
-            <!--<artifactId>HikariCP</artifactId>-->
-            <!--<version>3.3.1</version>-->
-        <!--</dependency>-->
+        <!-- HikariCP 数据库连接池 spring boot 2.0+ 默认的
+         https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+          -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>3.2.0</version>
+        </dependency>
 
 
         <!--阿里 FastJson依赖,处理json数据-->
@@ -294,12 +341,6 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!--测试模块，包括JUnit、Hamcrest、Mockito-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
@@ -344,17 +385,7 @@
             <version>3.5.0</version>
         </dependency>
 
-        <!--热部署-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <!--<optional>true</optional>-->
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
-            <version>2.0.9.RELEASE</version>
-        </dependency>
+
 
         <!--数据校验-->
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
@@ -363,15 +394,36 @@
             <artifactId>hibernate-validator</artifactId>
             <version>5.4.3.Final</version>
         </dependency>
-		
-		<!--会话存于redis 
-		spring-session + redis解决session共享问题
-		-->
-		<dependency>
-			<groupId>org.springframework.session</groupId>
-			<artifactId>spring-session-data-redis</artifactId>
-			<!--<version>2.0.5.RELEASE</version>-->
-		</dependency>
+
+
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.9</version>
+        </dependency>
+
+
+        <!--测试模块，包括JUnit、Hamcrest、Mockito-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>3.6.5</version>
+            <!--<version>5.4.3</version>-->
+        </dependency>
 
     </dependencies>
 
@@ -391,7 +443,17 @@
                     <!--fork 如果没有该项配置 整个devtools不会起作用-->
                     <fork>true</fork>
                 </configuration>
-
+				
+				<!--创建一个自动可执行的jar或war文件 -->
+				<!--
+				<executions>
+                    <execution>
+                        <goals> 
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+				-->
             </plugin>
 
             <!--generatorConfig-->
@@ -413,6 +475,7 @@
                 </dependencies>
 
                 <!--mybatis generator -->
+				<!--创建一个自动可执行的jar或war文件 -->
                 <executions>
                     <execution>
                         <id>mybatis generator</id>

@@ -6,7 +6,7 @@ package com.gaodev.springbootstudy.common;
  * @Author LeifChen
  * @Date 2019-02-26
  */
-public enum ResponseCodeEnum {
+public enum ResponseStatusCode {
 
     // 成功
     SUCCESS(0, "SUCCESS"),
@@ -18,18 +18,18 @@ public enum ResponseCodeEnum {
     NEED_LOGIN(10, "NEED_LOGIN");
 
     private final int code;
-    private final String desc;
+    private final String message;
 
-    ResponseCodeEnum(int code, String desc) {
+    ResponseStatusCode(int code, String message) {
         this.code = code;
-        this.desc = desc;
+        this.message = message;
     }
 
     public int getCode() {
         return code;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getMessage() {
+        return message;
     }
 }
